@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5dboe5lgm85x"]
+
+[ext_resource type="Script" uid="uid://2bncxdaooqla" path="res://Scripts/door.gd" id="1_fahql"]
+[ext_resource type="Texture2D" uid="uid://ctmp15wrciw" path="res://Sprites/Objects/Door/Door_destroy.png" id="1_p0e35"]
+[ext_resource type="Texture2D" uid="uid://c2ocsles3bm4t" path="res://Sprites/Objects/Door/Door_ok.png" id="2_fahql"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fahql"]
+light_mode = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab4ky"]
+size = Vector2(8, 32)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_fahql")
+
+[node name="Sprite_destroy" type="Sprite2D" parent="."]
+light_mask = 2
+texture = ExtResource("1_p0e35")
+
+[node name="Sprite_ok" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_fahql")
+texture = ExtResource("2_fahql")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite_ok"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite_ok/StaticBody2D"]
+shape = SubResource("RectangleShape2D_ab4ky")

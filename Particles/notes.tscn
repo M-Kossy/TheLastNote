@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2kpm3y0mmhnm"]
+
+[ext_resource type="Texture2D" uid="uid://cdcmnv0b8r81o" path="res://Sprites/Objects/Effects/Note_particules.png" id="1_msro6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hks3u"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_83lty"]
+_data = [Vector2(0.0421053, 1), 0.0, 0.0, 0, 0, Vector2(0.989474, 0.719101), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Notes" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_hks3u")
+amount = 1
+texture = ExtResource("1_msro6")
+lifetime = 1.5
+speed_scale = 1.5
+explosiveness = 1.0
+gravity = Vector2(0, -30)
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_83lty")
+anim_speed_min = 1.0
+anim_speed_max = 1.0

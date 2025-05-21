@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgku38wfoers1"]
+
+[ext_resource type="Script" uid="uid://c5hrywyaxr0em" path="res://Scripts/tuto_text.gd" id="1_glgv4"]
+[ext_resource type="FontFile" uid="uid://dlrjqdw1laxk8" path="res://Sprites/font/PixelOperator8.ttf" id="2_jtcq6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q2oyt"]
+font = ExtResource("2_jtcq6")
+font_color = Color(1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_act4w"]
+size = Vector2(81, 82.8125)
+
+[node name="Tuto_text" type="Node2D"]
+script = ExtResource("1_glgv4")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -80.0
+offset_right = 20.0
+offset_bottom = -57.0
+text = "CACACA"
+label_settings = SubResource("LabelSettings_q2oyt")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_act4w")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=13 format=3 uid="uid://btjsgxep6liy8"]
+
+[ext_resource type="Script" uid="uid://nc2uo8l83m7f" path="res://Global/Audio_manager.gd" id="1_hhwve"]
+[ext_resource type="AudioStream" uid="uid://duhaitd8ilc3a" path="res://OST/Ost sans trompettes/OGG/Niveau1 (st).ogg" id="2_0hehx"]
+[ext_resource type="AudioStream" uid="uid://cscyu3sdwy7qq" path="res://OST/Ost avec trompettes/OGG/Niveau1 (at).ogg" id="3_mjqhu"]
+[ext_resource type="AudioStream" uid="uid://b6fkhsm1jfpx1" path="res://OST/Ost sans trompettes/OGG/Niveau 2 (st).ogg" id="4_0hehx"]
+[ext_resource type="AudioStream" uid="uid://cldd43xft165f" path="res://OST/Ost avec trompettes/OGG/Niveau 2 (at).ogg" id="5_mjqhu"]
+[ext_resource type="AudioStream" uid="uid://ckt84u8y3m6tf" path="res://OST/Ost sans trompettes/OGG/Niveau 3 (st).ogg" id="6_5kf6k"]
+[ext_resource type="AudioStream" uid="uid://bltoiomkarur0" path="res://OST/Ost avec trompettes/OGG/Niveau 3 (at).ogg" id="7_tnn7g"]
+[ext_resource type="AudioStream" uid="uid://ok02off7wqvv" path="res://OST/Ost avec trompettes/OGG/Remember this (at).ogg" id="8_tnn7g"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_mjqhu"]
+stream_count = 2
+stream_0/stream = ExtResource("2_0hehx")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("3_mjqhu")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_5kf6k"]
+stream_count = 2
+stream_0/stream = ExtResource("4_0hehx")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("5_mjqhu")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_lwpe1"]
+stream_count = 2
+stream_0/stream = ExtResource("6_5kf6k")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("7_tnn7g")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_jmilc"]
+stream_count = 1
+stream_0/stream = ExtResource("8_tnn7g")
+stream_0/volume = -60.0
+
+[node name="AudioManager" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_hhwve")
+
+[node name="lv1" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamSynchronized_mjqhu")
+
+[node name="lv2" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_5kf6k")
+
+[node name="lv3" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_lwpe1")
+
+[node name="lv4" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_jmilc")

@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://dm5w4elq64urp"]
+
+[ext_resource type="Script" uid="uid://b15ydk2bhs3py" path="res://Scripts/tall_metal_box.gd" id="1_0m0ip"]
+[ext_resource type="Shader" uid="uid://c3sut8qhud47" path="res://Shaders/outline.gdshader" id="2_2vg06"]
+[ext_resource type="Texture2D" uid="uid://bniiuyx7xdthy" path="res://Sprites/Objects/Box/Tall_metal_box.png" id="3_csgjo"]
+[ext_resource type="Script" uid="uid://c5wjeg0858viw" path="res://Scripts/outline.gd" id="4_1tmwd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wr8m5"]
+resource_local_to_scene = true
+shader = ExtResource("2_2vg06")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfaos"]
+size = Vector2(27, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wr8m5"]
+size = Vector2(4, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vg06"]
+size = Vector2(3.75, 25)
+
+[node name="Tall_metal_box" type="CharacterBody2D"]
+script = ExtResource("1_0m0ip")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wr8m5")
+texture = ExtResource("3_csgjo")
+script = ExtResource("4_1tmwd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_bfaos")
+
+[node name="Area2D_right" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_right"]
+position = Vector2(19, 10)
+shape = SubResource("RectangleShape2D_wr8m5")
+
+[node name="Area2D_left" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_left"]
+position = Vector2(-20, 10)
+shape = SubResource("RectangleShape2D_2vg06")
+
+[connection signal="body_entered" from="Area2D_right" to="." method="_on_area_2d_right_body_entered"]
+[connection signal="body_exited" from="Area2D_right" to="." method="_on_area_2d_right_body_exited"]
+[connection signal="body_entered" from="Area2D_left" to="." method="_on_area_2d_right_body_entered"]
+[connection signal="body_exited" from="Area2D_left" to="." method="_on_area_2d_right_body_exited"]

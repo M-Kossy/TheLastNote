@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://d1dole3eqlswq"]
+
+[ext_resource type="Script" uid="uid://bfcxm41vly3o6" path="res://Scripts/ladder.gd" id="1_4gp4o"]
+[ext_resource type="Shader" uid="uid://c3sut8qhud47" path="res://Shaders/outline.gdshader" id="2_i62em"]
+[ext_resource type="Texture2D" uid="uid://uia0x332q33p" path="res://Sprites/Objects/Ladder/Ladder_destroy.png" id="2_i76ws"]
+[ext_resource type="Texture2D" uid="uid://oihgp3n7p2xu" path="res://Sprites/Objects/Ladder/Ladder_ok.png" id="3_i62em"]
+[ext_resource type="Script" uid="uid://c5wjeg0858viw" path="res://Scripts/outline.gd" id="3_i76ws"]
+[ext_resource type="AudioStream" uid="uid://cjiiq3cqom2kt" path="res://OST/Fall.mp3" id="6_u0or8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0or8"]
+resource_local_to_scene = true
+shader = ExtResource("2_i62em")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh5uf"]
+size = Vector2(24, 50)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i62em"]
+light_mode = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1qfn"]
+size = Vector2(24, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i62em"]
+size = Vector2(24, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0or8"]
+size = Vector2(24, 3)
+
+[node name="Ladder" type="CharacterBody2D" groups=["addons"]]
+collision_layer = 3
+script = ExtResource("1_4gp4o")
+
+[node name="Ladder_destroy" type="Sprite2D" parent="."]
+light_mask = 2
+material = SubResource("ShaderMaterial_u0or8")
+texture = ExtResource("2_i76ws")
+script = ExtResource("3_i76ws")
+
+[node name="Area2D_destroy" type="Area2D" parent="Ladder_destroy"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape_destroy" type="CollisionShape2D" parent="Ladder_destroy/Area2D_destroy"]
+position = Vector2(0, 23)
+shape = SubResource("RectangleShape2D_hh5uf")
+
+[node name="Ladder_ok" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_i62em")
+position = Vector2(0, -8)
+texture = ExtResource("3_i62em")
+
+[node name="Area2D_ok" type="Area2D" parent="Ladder_ok"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape_ok" type="CollisionShape2D" parent="Ladder_ok/Area2D_ok"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_v1qfn")
+
+[node name="body" type="CollisionShape2D" parent="."]
+position = Vector2(-4.76837e-07, 42)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_i62em")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="Legs" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 46.5)
+shape = SubResource("RectangleShape2D_u0or8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_u0or8")
+pitch_scale = 0.5
+
+[connection signal="body_entered" from="Ladder_destroy/Area2D_destroy" to="." method="_on_area_2d_destroy_body_entered"]
+[connection signal="body_exited" from="Ladder_destroy/Area2D_destroy" to="." method="_on_area_2d_destroy_body_exited"]
+[connection signal="body_entered" from="Ladder_ok/Area2D_ok" to="." method="_on_area_2d_ok_body_entered"]
+[connection signal="body_exited" from="Ladder_ok/Area2D_ok" to="." method="_on_area_2d_ok_body_exited"]

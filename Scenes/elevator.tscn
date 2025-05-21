@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=3 uid="uid://ini284c52kr6"]
+
+[ext_resource type="Script" uid="uid://1bxi6uqiqcq" path="res://Scripts/crank.gd" id="1_wditd"]
+[ext_resource type="Texture2D" uid="uid://dmqg76tgeoj45" path="res://Sprites/Objects/Elevaor/Crank_ok.png" id="2_1gjip"]
+[ext_resource type="Texture2D" uid="uid://bfxb7dg7hu53i" path="res://Sprites/Objects/Elevaor/Crank_ok_2.png" id="2_sdfrh"]
+[ext_resource type="Shader" uid="uid://c3sut8qhud47" path="res://Shaders/outline.gdshader" id="3_sopnf"]
+[ext_resource type="Script" uid="uid://dg6d0fkctpg63" path="res://Scripts/plat_form.gd" id="3_tkptf"]
+[ext_resource type="Texture2D" uid="uid://j770h5pocpdo" path="res://Sprites/Objects/Elevaor/Platform_destroy.png" id="5_ehl1p"]
+[ext_resource type="Texture2D" uid="uid://cu2lprg12tmiu" path="res://Sprites/Objects/Elevaor/Platform.png" id="5_sdfrh"]
+[ext_resource type="Script" uid="uid://c5wjeg0858viw" path="res://Scripts/outline.gd" id="5_uble1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_terx2"]
+resource_local_to_scene = true
+shader = ExtResource("3_sopnf")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfiox"]
+size = Vector2(16, 24.75)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sopnf"]
+light_mode = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sopnf"]
+radius = 8.0
+height = 64.0
+
+[node name="Elevator" type="Node2D"]
+
+[node name="Crank" type="StaticBody2D" parent="."]
+position = Vector2(50, 0)
+disable_mode = 2
+script = ExtResource("1_wditd")
+
+[node name="crankSprite_ok_second" type="Sprite2D" parent="Crank"]
+visible = false
+texture = ExtResource("2_sdfrh")
+
+[node name="crankSprite_ok" type="Sprite2D" parent="Crank"]
+material = SubResource("ShaderMaterial_terx2")
+texture = ExtResource("2_1gjip")
+script = ExtResource("5_uble1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crank"]
+position = Vector2(0, 3.375)
+shape = SubResource("RectangleShape2D_vfiox")
+one_way_collision = true
+
+[node name="PlatForm" type="StaticBody2D" parent="."]
+position = Vector2(-50, 0)
+script = ExtResource("3_tkptf")
+
+[node name="PlatformSprite_destroy" type="Sprite2D" parent="PlatForm"]
+texture = ExtResource("5_ehl1p")
+
+[node name="PlatformSprite" type="Sprite2D" parent="PlatForm"]
+material = SubResource("CanvasItemMaterial_sopnf")
+texture = ExtResource("5_sdfrh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatForm"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sopnf")

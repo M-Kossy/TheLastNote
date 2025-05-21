@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://davo8ou20ia5s"]
+
+[ext_resource type="Script" uid="uid://bhf0gmr5pbu0r" path="res://Scripts/game_manager.gd" id="1_es8qg"]
+[ext_resource type="Texture2D" uid="uid://hlc7ok76lou" path="res://Sprites/Tiles_sheets_2.png" id="2_fgdfb"]
+[ext_resource type="Texture2D" uid="uid://bimiud0ko42j0" path="res://Sprites/Tiles_sheets_2_ok.png" id="2_yqty0"]
+[ext_resource type="Script" uid="uid://f3rdfd8b5hay" path="res://Scripts/static_body_2d.gd" id="3_fgdfb"]
+[ext_resource type="Shader" uid="uid://bvfe4eye24say" path="res://Shaders/game_manager.gdshader" id="3_mmt5l"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_71d4j"]
+texture = ExtResource("2_yqty0")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+4:1/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_efn8y"]
+sources/0 = SubResource("TileSetAtlasSource_71d4j")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fgdfb"]
+shader = ExtResource("3_mmt5l")
+shader_parameter/radius = 0.0
+shader_parameter/position = Vector2(0.5, 0.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4mau"]
+texture = ExtResource("2_fgdfb")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:2/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+4:1/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+6:1/0 = 0
+5:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_b5cn8"]
+sources/0 = SubResource("TileSetAtlasSource_i4mau")
+
+[node name="Game_manager" type="Node2D" groups=["Game_manager"]]
+script = ExtResource("1_es8qg")
+
+[node name="TileMap_pre" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_efn8y")
+collision_enabled = false
+
+[node name="StaticBody2D_pre" type="StaticBody2D" parent="TileMap_pre"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("3_fgdfb")
+
+[node name="TileMap_post" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_fgdfb")
+tile_set = SubResource("TileSet_b5cn8")
+collision_enabled = false
+
+[node name="StaticBody2D_post" type="StaticBody2D" parent="TileMap_post"]
+script = ExtResource("3_fgdfb")
+
+[node name="Test" type="Label" parent="."]
+visible = false
+offset_left = 19.0
+offset_top = -35.0
+offset_right = 59.0
+offset_bottom = -12.0

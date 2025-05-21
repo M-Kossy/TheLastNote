@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ok02off7wqvv"
+path="res://.godot/imported/Remember this (at).ogg-395c1b8dd823138f03ae46eea5bde4a8.oggvorbisstr"
+
+[deps]
+
+source_file="res://OST/Ost avec trompettes/OGG/Remember this (at).ogg"
+dest_files=["res://.godot/imported/Remember this (at).ogg-395c1b8dd823138f03ae46eea5bde4a8.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

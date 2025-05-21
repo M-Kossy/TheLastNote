@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://grq4b4g4af08"]
+
+[ext_resource type="Script" uid="uid://dq6nasr721jjw" path="res://Scripts/metal_box.gd" id="1_tnttr"]
+[ext_resource type="Texture2D" uid="uid://ck8e8uktp5g1o" path="res://Sprites/Objects/Box/Metal_box_ok.png" id="2_lcmq8"]
+[ext_resource type="Shader" uid="uid://c3sut8qhud47" path="res://Shaders/outline.gdshader" id="2_qmwbn"]
+[ext_resource type="Script" uid="uid://c5wjeg0858viw" path="res://Scripts/outline.gd" id="4_ycnpk"]
+[ext_resource type="AudioStream" uid="uid://cjiiq3cqom2kt" path="res://OST/Fall.mp3" id="5_ycnpk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqr7u"]
+resource_local_to_scene = true
+shader = ExtResource("2_qmwbn")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmwbn"]
+size = Vector2(27, 32)
+
+[node name="Metal_box" type="CharacterBody2D"]
+script = ExtResource("1_tnttr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gqr7u")
+texture = ExtResource("2_lcmq8")
+script = ExtResource("4_ycnpk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_qmwbn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ycnpk")
+pitch_scale = 0.3

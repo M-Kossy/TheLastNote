@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://duxhjb8hm18ks"]
+
+[ext_resource type="Texture2D" uid="uid://c5or0mpblx8kx" path="res://Sprites/Tiles_pre_war.png" id="1_yfg74"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ejhf"]
+texture = ExtResource("1_yfg74")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_7nhe0"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_1ejhf")
+
+[node name="Tile_set" type="TileMap"]
+tile_set = SubResource("TileSet_7nhe0")
+format = 2

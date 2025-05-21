@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://cd8jlxpqshvga"]
+
+[ext_resource type="Script" uid="uid://gk0s7uexefju" path="res://Scripts/box.gd" id="1_2jyye"]
+[ext_resource type="Texture2D" uid="uid://j1cqqv7adji" path="res://Sprites/Objects/Box/Broken_wood_box.png" id="1_ego7h"]
+[ext_resource type="Texture2D" uid="uid://q2bhx44ffvl1" path="res://Sprites/Objects/Box/Wood_box.png" id="1_xkb4e"]
+[ext_resource type="Shader" uid="uid://dbk6d6pid47t3" path="res://Shaders/box.gdshader" id="3_y7274"]
+[ext_resource type="Script" uid="uid://c5wjeg0858viw" path="res://Scripts/outline.gd" id="5_4pvdy"]
+[ext_resource type="AudioStream" uid="uid://cjiiq3cqom2kt" path="res://OST/Fall.mp3" id="6_4pvdy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ilgn"]
+resource_local_to_scene = true
+shader = ExtResource("3_y7274")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkb4e"]
+size = Vector2(27, 32)
+
+[node name="Box" type="CharacterBody2D" groups=["boxes"]]
+script = ExtResource("1_2jyye")
+
+[node name="Broken" type="Sprite2D" parent="."]
+light_mask = 2
+texture = ExtResource("1_ego7h")
+
+[node name="Ok" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7ilgn")
+texture = ExtResource("1_xkb4e")
+script = ExtResource("5_4pvdy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_xkb4e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_4pvdy")
+pitch_scale = 0.39

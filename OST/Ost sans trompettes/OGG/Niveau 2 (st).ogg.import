@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b6fkhsm1jfpx1"
+path="res://.godot/imported/Niveau 2 (st).ogg-b20110df5877055e26ff8c3f03a267d2.oggvorbisstr"
+
+[deps]
+
+source_file="res://OST/Ost sans trompettes/OGG/Niveau 2 (st).ogg"
+dest_files=["res://.godot/imported/Niveau 2 (st).ogg-b20110df5877055e26ff8c3f03a267d2.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
